@@ -4,23 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
+
+    private TextView origin;
+    private TextView aka;
+    private TextView description;
+    private TextView ingredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
+        ImageView ingredientsIv = findViewById(R.id.iv_image);
+        origin = (TextView) findViewById(R.id.tv_origin);
+        aka = (TextView) findViewById(R.id.tv_aka);
+        description = (TextView) findViewById(R.id.tv_description);
+        ingredients = (TextView) findViewById(R.id.tv_ingredients);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -43,12 +54,12 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        //Passing sandwich object to populateUI method
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
 
-        setTitle(sandwich.getMainName());
     }
 
     private void closeOnError() {
@@ -56,7 +67,29 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich sandwich) {
+
+        StringBuilder sbForAkaArray = new StringBuilder();
+        for(int i = 0; i < sandwich.getAlsoKnownAs().size(); i++){
+            if(sandwich.getAlsoKnownAs().size() > 1){
+                sbForAkaArray.append(sandwich.getAlsoKnownAs().get(i));
+                sbForAkaArray.append(", ");
+            }else{
+                sbForAkaArray.append(sandwich.getAlsoKnownAs().get(i));
+            }
+        }
+
+        StringBuilder sbForIngredients = new StringBuilder();
+        for(int i = 0; i < sandwich.getIngredients().size(); i++){
+                sbForIngredients.append(sandwich.getIngredients().get(i));
+                sbForIngredients.append(", ");
+        }
+
+        setTitle(sandwich.getMainName());
+        aka.setText(sbForAkaArray);
+        origin.setText(sandwich.getPlaceOfOrigin());
+        description.setText(sandwich.getDescription());
+        ingredients.setText(sbForIngredients);
 
     }
 }

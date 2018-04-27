@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public final class JsonUtils {
 
   private static List<String> akaList = new ArrayList<String>();
-  private static List<String> ingredientsList = new ArrayList<String>();
+  private static List<String> ingredients = new ArrayList<String>();
 
   private static String name;
   private static String poo;
@@ -39,7 +39,7 @@ public final class JsonUtils {
           akaList.add(akaArray.getString(i));
         }
 
-      //Assigning String key/values to previous created Strings.
+      //Assigning String key/values to previously created Strings.
       name = sandwich_name.getString("mainName");
       poo = sandwich_root.getString("placeOfOrigin");
       description = sandwich_root.getString("description");
@@ -48,7 +48,7 @@ public final class JsonUtils {
       //Creating JSON Array for ingredient array object and FOR loop to iterate over it.
       JSONArray ingredientsArray = sandwich_root.getJSONArray("ingredients");
         for(int i = 0; i < ingredientsArray.length(); i++){
-          ingredientsList.add(ingredientsArray.getString(i));
+          ingredients.add(ingredientsArray.getString(i));
         }
 
     //Including catch for parseSandwichJson method
@@ -58,7 +58,7 @@ public final class JsonUtils {
     }
 
       //returning an individual Sandwich
-      return new Sandwich(name, akaList, poo, description, imagePath, ingredientsList);
+      return new Sandwich(name, akaList, poo, description, imagePath, ingredients);
 
   }
 
