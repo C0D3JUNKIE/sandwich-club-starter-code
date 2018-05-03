@@ -70,6 +70,9 @@ public class DetailActivity extends AppCompatActivity {
 
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .error(R.drawable.ic_404)
+                .fit()
+                .centerCrop()
                 .into(ingredientsIv);
 
     }
