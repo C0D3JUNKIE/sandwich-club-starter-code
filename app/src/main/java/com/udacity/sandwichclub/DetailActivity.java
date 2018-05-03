@@ -10,15 +10,16 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+import org.json.JSONException;
 
 
 public class DetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_POSITION = "extra_position";
-    private static final int DEFAULT_POSITION = -1;
+  public static final String EXTRA_POSITION = "extra_position";
+  private static final int DEFAULT_POSITION = -1;
 
-    private TextView origin;
-    private TextView aka;
+  private TextView origin;
+  private TextView aka;
     private TextView description;
     private TextView ingredients;
 
@@ -28,6 +29,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ImageView ingredientsIv = findViewById(R.id.iv_image);
+
+        //TextView assignments
         origin = (TextView) findViewById(R.id.tv_origin);
         aka = (TextView) findViewById(R.id.tv_aka);
         description = (TextView) findViewById(R.id.tv_description);
@@ -47,8 +50,16 @@ public class DetailActivity extends AppCompatActivity {
 
         String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
         String json = sandwiches[position];
-        Sandwich sandwich = JsonUtils.parseSandwichJson(json);
-        if (sandwich == null) {
+      Sandwich sandwich = null;
+
+      //Try catch for JSONException
+      try {
+        sandwich = JsonUtils.parseSandwichJson(json);
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
+
+      if (sandwich == null) {
             // Sandwich data unavailable
             closeOnError();
             return;
@@ -56,6 +67,7 @@ public class DetailActivity extends AppCompatActivity {
 
         //Passing sandwich object to populateUI method
         populateUI(sandwich);
+
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -69,27 +81,50 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
 
-        StringBuilder sbForAkaArray = new StringBuilder();
-        for(int i = 0; i < sandwich.getAlsoKnownAs().size(); i++){
-            if(sandwich.getAlsoKnownAs().size() > 1){
-                sbForAkaArray.append(sandwich.getAlsoKnownAs().get(i));
-                sbForAkaArray.append(", ");
-            }else{
-                sbForAkaArray.append(sandwich.getAlsoKnownAs().get(i));
-            }
+      //Create StringBuilder to hold aka values
+      StringBuilder sbForAkaArray = new StringBuilder();
+      //Conditional statement to know if aka is empty
+      if(sandwich.getAlsoKnownAs().size() > 0) {
+        //Iterate through aka values and append value and comma if multiple values exist.
+        for (int i = 0; i < sandwich.getAlsoKnownAs().size(); i++) {
+          if (sandwich.getAlsoKnownAs().size() > 1) {
+            sbForAkaArray.append(sandwich.getAlsoKnownAs().get(i));
+            sbForAkaArray.append(", ");
+          } else {
+            sbForAkaArray.append(sandwich.getAlsoKnownAs().get(i));
+          }
         }
+      }else{
+        sbForAkaArray.append("No additional names known.");
+      }
+      //Setting aka value(s)
+      aka.setText(sbForAkaArray);
 
-        StringBuilder sbForIngredients = new StringBuilder();
-        for(int i = 0; i < sandwich.getIngredients().size(); i++){
-                sbForIngredients.append(sandwich.getIngredients().get(i));
-                sbForIngredients.append(", ");
-        }
-
-        setTitle(sandwich.getMainName());
-        aka.setText(sbForAkaArray);
+      //Conditional statement to check if placeOfOrigin exists
+      if(sandwich.getPlaceOfOrigin().isEmpty()){
+        origin.setText("Not known.");
+      }else{
         origin.setText(sandwich.getPlaceOfOrigin());
-        description.setText(sandwich.getDescription());
-        ingredients.setText(sbForIngredients);
+      }
+
+      //Setting description value
+      description.setText(sandwich.getDescription());
+
+      //Create StringBuilder to hold ingredient values
+      StringBuilder sbForIngredients = new StringBuilder();
+      //Conditional statement to check if ingredients is above 0.
+      if(sandwich.getIngredients().size() > 0){
+        //Iterate through ingredients and append value with comma if multiple values
+        for(int i = 0; i < sandwich.getIngredients().size(); i++){
+          sbForIngredients.append(sandwich.getIngredients().get(i));
+          sbForIngredients.append(", ");
+        }
+      }else{
+        sbForIngredients.append("None.");
+      }
+      //Setting ingredientsList to ingredients field
+      ingredients.setText(sbForIngredients);
 
     }
+
 }

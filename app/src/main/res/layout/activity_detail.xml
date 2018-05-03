@@ -27,13 +27,15 @@
 
       <TextView
         android:id="@+id/label_aka"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_marginTop="16dp"
         android:layout_alignParentBottom="false"
         android:layout_below="@+id/iv_image"
-        android:text="@string/detail_also_known_as_label"/>
+        android:text="@string/detail_also_known_as_label"
+        android:textSize="16sp"/>
 
       <TextView
         android:id="@+id/tv_aka"
@@ -47,12 +49,13 @@
 
       <TextView
         android:id="@+id/label_origin"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_below="@+id/tv_aka"
-        android:text="@string/detail_place_of_origin_label"/>
+        android:text="@string/detail_place_of_origin_label"
+        android:textSize="16sp"/>
 
       <TextView
         android:id="@+id/tv_origin"
@@ -66,12 +69,13 @@
 
       <TextView
         android:id="@+id/label_description"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_below="@+id/tv_origin"
-        android:text="@string/detail_description_label"/>
+        android:text="@string/detail_description_label"
+        android:textSize="16sp"/>
 
       <TextView
         android:id="@+id/tv_description"
@@ -85,12 +89,13 @@
 
       <TextView
         android:id="@+id/label_ingredients"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_below="@+id/tv_description"
-        android:text="@string/detail_ingredients_label"/>
+        android:text="@string/detail_ingredients_label"
+        android:textSize="16sp"/>
 
       <TextView
         android:id="@+id/tv_ingredients"
