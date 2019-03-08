@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="textHeaderStyle">
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/textViewLayoutMargin</item>
+        <item name="android:textSize">@dimen/textHeaderSize</item>
+    </style>
+
+    <style name="textViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/textViewLayoutMargin</item>
+        <item name="android:layout_marginLeft">@dimen/textViewLayoutMargin</item>
+        <item name="android:layout_marginRight">@dimen/textViewLayoutMargin</item>
+        <item name="android:padding">@dimen/textViewPadding</item>
+    </style>
+
 </resources>

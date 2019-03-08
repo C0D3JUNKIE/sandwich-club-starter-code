@@ -14,12 +14,12 @@
 
     <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="wrap_content">
 
       <ImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/imageViewHeight"
         android:adjustViewBounds="true"
         android:layout_alignParentTop="true"
         android:contentDescription="@string/sandwich_picture_content_description"
@@ -27,87 +27,47 @@
 
       <TextView
         android:id="@+id/label_aka"
-        android:textStyle="bold|italic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentBottom="false"
-        android:layout_below="@+id/iv_image"
         android:text="@string/detail_also_known_as_label"
-        android:textSize="16sp"/>
+        android:layout_below="@+id/iv_image"
+        style="@style/textHeaderStyle"/>
 
       <TextView
         android:id="@+id/tv_aka"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_below="@+id/label_aka"
-        android:padding="4dp"/>
+        style="@style/textViewStyle"/>
 
       <TextView
         android:id="@+id/label_origin"
-        android:textStyle="bold|italic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_below="@+id/tv_aka"
         android:text="@string/detail_place_of_origin_label"
-        android:textSize="16sp"/>
+        android:layout_below="@+id/tv_aka"
+        style="@style/textHeaderStyle" />
 
       <TextView
         android:id="@+id/tv_origin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_below="@+id/label_origin"
-        android:padding="4dp"/>
+        style="@style/textViewStyle" />
 
       <TextView
         android:id="@+id/label_description"
-        android:textStyle="bold|italic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_below="@+id/tv_origin"
         android:text="@string/detail_description_label"
-        android:textSize="16sp"/>
+        android:layout_below="@+id/tv_origin"
+        style="@style/textHeaderStyle"/>
 
       <TextView
         android:id="@+id/tv_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_below="@+id/label_description"
-        android:padding="4dp"/>
+        style="@style/textViewStyle"/>
 
       <TextView
         android:id="@+id/label_ingredients"
-        android:textStyle="bold|italic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:layout_below="@+id/tv_description"
         android:text="@string/detail_ingredients_label"
-        android:textSize="16sp"/>
+        style="@style/textHeaderStyle"/>
 
       <TextView
         android:id="@+id/tv_ingredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_below="@+id/label_ingredients"
-        android:paddingBottom="4dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp"/>
+        style="@style/textViewStyle"/>
 
     </RelativeLayout>
 
